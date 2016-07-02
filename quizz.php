@@ -26,7 +26,9 @@ if(isset($_GET['id']) && $_GET['id'] != ''){
     <div class="row">
         <form action="validation_quizz.php" method="post">
         <?php
+        $i = 0; // Compteur de questions.
             foreach($questions as $question){
+                $i++
                 ?>
                 <h4><?php echo $question['intitule'] ?></h4>
 
@@ -38,7 +40,7 @@ if(isset($_GET['id']) && $_GET['id'] != ''){
                     ?>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="question<?php echo $question['id']?>" id="question<?php echo $question['id']?>" value="<?php echo $proposition['id']?>" >
+                        <input type="radio" name="question<?php echo $i?>" id="question<?php echo $i?>" value="<?php echo $proposition['id']?>" >
                         <?php echo $proposition['reponses']?>
                     </label>
                 </div>
