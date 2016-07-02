@@ -27,10 +27,11 @@ if(isset($_POST['id']) && $_POST['id'] != ''){
 <div class="container">
     <div class="row">
     <?php
-    $i = 0;
+    $nbQuestions = 0;
+    $score = 0;
     foreach($questions as $question){
-        $i++;
-        $reponses = $_POST['question'.$i];
+        $nbQuestions++;
+        $reponses = $_POST['question'.$nbQuestions];
         ?>
         <h4><?php echo $question['intitule'] ?></h4>
         <?php
@@ -47,6 +48,7 @@ if(isset($_POST['id']) && $_POST['id'] != ''){
             <p>Votre reponse : <?php echo $reponse['reponses'];?></p>
             <?php
             if($reponse['reponses'] == $solution['reponses']){
+                $score++;
                 ?>
                 <p>Bravo</p>
                 <?php
@@ -57,8 +59,12 @@ if(isset($_POST['id']) && $_POST['id'] != ''){
                 <?php
             }
         }
-    echo '<hr>';
 }
+    ?>
+    <h3>Votre score est de :
+    <?php echo round(($score / $nbQuestions) * 100, 2) . '%</h3>';
+    echo '<br>';
+    echo '<a href="index.php">Retour à l\'accueil</a>';
 ?>
 <?php
 }else{
