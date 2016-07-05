@@ -27,17 +27,35 @@
                     foreach ($propositions as $cle => $proposition) {
                         $propositions[$cle]['id'] = $proposition['id'];
                         $propositions[$cle]['reponses'] = $proposition['reponses'];
+                        if($question['qcm'] == 'N') {
+                            ?>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio"
+                                           name="<?php echo $compteurQuestion; ?>"
+                                           id="<?php echo $compteurQuestion; ?>"
+                                           value="<?php echo $proposition['reponses']; ?>">
+                                    <?php echo $proposition['reponses'] ?>
+                                </label>
+                            </div>
+                            <?php
+                        }else{
                         ?>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="<?php echo $compteurQuestion;?>" id="<?php echo $compteurQuestion;?>" value="<?php echo $proposition['reponses'];?>">
-                                <?php echo $proposition['reponses']?>
-                            </label>
-                        </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"
+                                           name="<?php echo $compteurQuestion; ?>[]"
+                                           id="<?php echo $compteurQuestion; ?>"
+                                           value="<?php echo $proposition['reponses']; ?>">
+                                    <?php echo $proposition['reponses'] ?>
+                                </label>
+                            </div>
                         <?php
+                        }
                     }
                 }
                 ?>
+                <input type="hidden" name="adresseIP" value="<?php echo $_SERVER["REMOTE_ADDR"]?>">
                 <input type="hidden" name="idQuiz" value="<?php echo $_GET['id'];?>">
                 <button type="submit" class="btn btn-primary">Valider</button>
             </div>

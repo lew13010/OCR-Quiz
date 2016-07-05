@@ -12,24 +12,39 @@
     <div class="row">
         <h1>Resultats du test : <?php echo $titre;?></h1>
         <?php
-        $compteurQuestion = 0;
-        $score = 0;
         foreach($solutions as $solution){
             $compteurQuestion ++;
             ?>
-            <h4><?php echo $solution['intitule']?></h4>
-            <p>Votre réponse : <?php echo $_POST[$compteurQuestion]?></p>
-            <h5>
-                <?php if($_POST[$compteurQuestion] == $solution['reponses']){
-                    echo 'Bonne réponse'; $score++;
+            <h4><?php echo $solution['intitule'];?></h4>
+            <p>Votre réponse :
+                <?php
+                if(!is_array($_POST[$compteurQuestion])){
+                    echo $_POST[$compteurQuestion];
                 }else{
-                    echo 'La bonne réponses etait :'. $solution['reponses'];
+                    foreach($_POST[$compteurQuestion] as $value){
+                        echo ' - ' . $value;
+                    }
+                }
+                ?></p>
+            <h5>
+                <?php
+                if(!is_array($_POST[$compteurQuestion])) {
+                    if ($_POST[$compteurQuestion] == $solution['reponses']) {
+                        echo 'Bonne réponse';
+                        $score++;
+                    } else {
+                        echo 'La bonne réponses etait : ' . $solution['reponses'];
+                    }
+                }else {
+
                 }?>
             </h5>
         <?php
+
         }
         ?>
         <h3>Votre score est de : <?php echo round(($score/$compteurQuestion)*100);?>%</h3>
+        <a href="index.php">Retour à l'accueil</a>
     </div>
 </div>
 </body>
