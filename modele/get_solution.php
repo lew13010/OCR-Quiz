@@ -5,10 +5,9 @@ function get_solutions(array $post){
     $req = $bdd->query("SELECT intitule, reponses FROM quiz
                         LEFT JOIN questions
                           ON id_quiz = quiz.id
-                        LEFT JOIN propositions
+                        LEFT JOIN solutions
                           ON id_question = questions.id
-                        WHERE quiz.id = ".$post['idQuiz']."
-                        AND correct = 'Y'");
+                        WHERE quiz.id = ".$post['idQuiz']."");
     $solutions = $req->fetchAll(PDO::FETCH_ASSOC);
     return $solutions;
 }

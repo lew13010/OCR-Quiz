@@ -33,10 +33,21 @@
                         echo 'Bonne réponse';
                         $score++;
                     } else {
-                        echo 'La bonne réponses etait : ' . $solution['reponses'];
+                        echo 'La bonne réponse etait : ' . $solution['reponses'];
                     }
                 }else {
-
+                    $checkbox = count($_POST[$compteurQuestion]);
+                    $reponse='';
+                    for($i=0; $i < $checkbox; $i++){
+                        if($i < ($checkbox-1)){$virgule = ', ';}else{$virgule ='';};
+                        $reponse = $reponse . $_POST[$compteurQuestion][$i]. $virgule;
+                    }
+                    if ($reponse == $solution['reponses']) {
+                        echo 'Bonne réponse';
+                        $score++;
+                    } else {
+                        echo 'La bonne réponse etait : ' . $solution['reponses'];
+                    }
                 }?>
             </h5>
         <?php

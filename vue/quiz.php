@@ -34,19 +34,19 @@
                                     <input type="radio"
                                            name="<?php echo $compteurQuestion; ?>"
                                            id="<?php echo $compteurQuestion; ?>"
-                                           value="<?php echo $proposition['reponses']; ?>">
+                                           value="<?php echo $proposition['reponses']; ?>"required>
                                     <?php echo $proposition['reponses'] ?>
                                 </label>
                             </div>
                             <?php
                         }else{
                         ?>
-                            <div class="checkbox">
+                            <div class="form-group checkbox options">
                                 <label>
                                     <input type="checkbox"
                                            name="<?php echo $compteurQuestion; ?>[]"
                                            id="<?php echo $compteurQuestion; ?>"
-                                           value="<?php echo $proposition['reponses']; ?>">
+                                           value="<?php echo $proposition['reponses']; ?>" required>
                                     <?php echo $proposition['reponses'] ?>
                                 </label>
                             </div>
@@ -62,5 +62,17 @@
         </form>
     </div>
 </div>
+<script>
+    $(function(){
+        var requiredCheckboxes = $('.options :checkbox[required]');
+        requiredCheckboxes.change(function(){
+            if(requiredCheckboxes.is(':checked')) {
+                requiredCheckboxes.removeAttr('required');
+            } else {
+                requiredCheckboxes.attr('required', 'required');
+            }
+        });
+    });
+</script>
 </body>
 </html>
