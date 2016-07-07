@@ -10,23 +10,17 @@
 <body>
 <div class="container">
     <div class="row">
-        <h1>Quiz disponible :</h1>
+        <h1>Mes quiz :</h1>
         <ul>
-            <?php
-            foreach($quiz as $value)
-            {
-                ?>
-                <li><a href="index.php?p=quiz&id=<?php echo $value['id']?>"><?php echo $value['titre']?></a></li>
-                <?php
-            }
-            if(check_ip($_SERVER["REMOTE_ADDR"])){
-                ?>
-                <a href="index.php?p=list_my_quiz">Voir mes quiz</a>
-                <?php
-            }
+        <?php
+        foreach($myQuiz as $quiz){
             ?>
-
+            <li><a href="index.php?p=my_quiz&id=<?php echo $quiz['id']; ?>"><?php echo $quiz['titre']; ?></a></li>
+            <?php
+        }
+        ?>
         </ul>
+        <p><a href="index.php">Retour à l'accueil</a></p>
     </div>
 </div>
 </body>

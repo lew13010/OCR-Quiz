@@ -1,18 +1,13 @@
 <?php
 include_once ('modele/exist_quiz.php');
 if(isset($_GET['id']) && exist_quiz($_GET['id'])) {
-    include_once ('modele/test_ip.php');
-    if(test_ip($_SERVER["REMOTE_ADDR"], $_GET['id'])){
-        header('Location: index.php');
-    }else{
-        include_once ('modele/get_questions.php');
-        $questions = get_questions($_GET['id']);
+    include_once ('modele/get_questions.php');
+    $questions = get_questions($_GET['id']);
 
-        include_once('modele/get_titre_quiz.php');
-        $titre = get_titre_quiz($_GET['id']);
-        $compteurQuestion = 0;
-        include_once('vue/quiz.php');
-    }
+    include_once('modele/get_titre_quiz.php');
+    $titre = get_titre_quiz($_GET['id']);
+    $compteurQuestion = 0;
+    include_once('vue/quiz.php');
 }else{
     header('Location: index.php');
 }

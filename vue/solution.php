@@ -19,10 +19,10 @@
             <p>Votre réponse :
                 <?php
                 if(!is_array($_POST[$compteurQuestion])){
-                    echo $_POST[$compteurQuestion];
+                    echo htmlspecialchars($_POST[$compteurQuestion]);
                 }else{
                     foreach($_POST[$compteurQuestion] as $value){
-                        echo ' - ' . $value;
+                        echo ' - ' . htmlspecialchars($value);
                     }
                 }
                 ?></p>
