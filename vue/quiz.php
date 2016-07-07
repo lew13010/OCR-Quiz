@@ -3,9 +3,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
     <title>Liste des Quiz</title>
+
 </head>
 <body>
 <div class="container">
@@ -24,10 +26,11 @@
                     include_once('modele/get_propositions.php');
                     $propositions = get_propositions($question['id']);
 
+                    $ordre = 0;
                     foreach ($propositions as $cle => $proposition) {
                         $propositions[$cle]['id'] = $proposition['id'];
                         $propositions[$cle]['reponses'] = $proposition['reponses'];
-                        if($question['qcm'] == 'N') {
+                        if($question['type'] == 'radio') {
                             ?>
                             <div class="radio">
                                 <label>
@@ -39,7 +42,7 @@
                                 </label>
                             </div>
                             <?php
-                        }else{
+                        }elseif($question['type'] == 'box'){
                         ?>
                             <div class="form-group checkbox options">
                                 <label>
@@ -52,12 +55,39 @@
                             </div>
                         <?php
                         }
+                        elseif($question['type'] == 'nombre'){
+                            ?>
+                            <div class="form-group">
+                                <label>
+                                    <input type="text"
+                                           name="<?php echo $compteurQuestion; ?>[]"
+                                           id="<?php echo $compteurQuestion; ?>"
+                                           required>
+                                </label>
+                            </div>
+                            <?php
+                        }
+                        elseif($question['type'] == 'ordre'){
+                            $ordre ++;
+                            ?>
+                            <div class="form-group">
+                                <label for="<?php echo $compteurQuestion.'-'.$ordre; ?>"><?php echo $proposition['reponses']; ?>
+                                    <input class="form-control" type="text"
+                                           name="<?php echo $compteurQuestion;?>[]"
+                                           id="<?php echo $compteurQuestion.'-'.$ordre; ?>"
+                                           value="<?php echo $ordre; ?>"
+                                           maxlength="1"
+                                           required ">
+                                </label>
+                            </div>
+                            <?php
+                        }
                     }
                 }
                 ?>
                 <input type="hidden" name="adresseIP" value="<?php echo $_SERVER["REMOTE_ADDR"]?>">
                 <input type="hidden" name="idQuiz" value="<?php echo $_GET['id'];?>">
-                <button type="submit" class="btn btn-primary">Valider</button>
+                <button type="submit" id="quiz-send" class="btn btn-primary">Valider</button>
             </div>
         </form>
     </div>
@@ -73,6 +103,7 @@
             }
         });
     });
+
 </script>
 </body>
 </html>

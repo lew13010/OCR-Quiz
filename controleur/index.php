@@ -9,11 +9,20 @@ if(!empty($_GET['p'])){
             include_once ('controleur/solution.php');
             break;
 
+        case 'list_my_quiz':
+            include_once ('controleur/list_my_quiz.php');
+            break;
+
+        case 'my_quiz':
+            include_once ('controleur/my_quiz.php');
+            break;
+
         default:
             header('Location: index.php');
             break;
     }
 }else{
+    include_once ("modele/check_ip.php");
     include_once ('modele/get_list_quiz.php');
 
     $quiz = get_list_quiz();
