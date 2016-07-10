@@ -60,7 +60,7 @@
                             <div class="form-group">
                                 <label>
                                     <input type="text"
-                                           name="<?php echo $compteurQuestion; ?>[]"
+                                           name="<?php echo $compteurQuestion; ?>"
                                            id="<?php echo $compteurQuestion; ?>"
                                            required>
                                 </label>

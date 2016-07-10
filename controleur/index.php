@@ -23,7 +23,7 @@ if(!empty($_GET['p'])){
     }
 }else{
     include_once ("modele/check_ip.php");
-    include_once ('modele/get_list_quiz.php');
+    include_once ('modele/quiz.php');
 
     $quiz = get_list_quiz();
 
