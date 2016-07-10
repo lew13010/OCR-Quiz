@@ -9,6 +9,8 @@ if(isset($_POST['idQuiz'])){
                     if($j<($nb-1)){$separateur = ', ';}else{$separateur = '';};
                     $reponse[$i] = $reponse[$i].$_POST[$i][$j].$separateur;
                 }
+            }elseif(isset($_POST[$i]) && $_POST[$i] == '') {
+                header('Location: index.php?p=quiz&id=' . $_POST['idQuiz']);
             }else{
                 $reponse[$i] = $_POST[$i];
             }
