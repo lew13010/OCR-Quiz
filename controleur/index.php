@@ -1,4 +1,6 @@
 <?php
+include_once ('vue/header.inc.php');
+
 if(!empty($_GET['p'])){
     switch($_GET['p']){
         case 'quiz':
@@ -34,3 +36,5 @@ if(!empty($_GET['p'])){
 
     include_once ('vue/index.php');
 }
+
+include_once ('vue/footer.inc.php');
